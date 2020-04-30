@@ -80,15 +80,17 @@ For example,
 mortgageCalculator(2000000, 0.05, 30); <-- should return 1,073.64
 */
 
-//function mortgageCalculator2(P, I, N) {
-//    let numerator = I * (Math.pow(( 1 + I ),N));
-//    let denominator = Math.pow(( 1 + I ),N) - 1;
-//
-//    let NewmonthlyRate = (P * (numerator / denominator));
-//    return NewmonthlyRate;
-//}
+function mortgageCalculator2(P, I, N) {
+     let monthlyInterestRate2 = I / 12;
+let periods2 = N * 12;
+   let numerator2 = monthlyInterestRate2 * (Math.pow(( 1 + monthlyInterestRate2 ),periods2));
+   let denominator2 = Math.pow(( 1 + monthlyInterestRate2 ),periods2) - 1;
 
-//console.log(mortgageCalculator2("Kamryn", monthlyRate ));
+   let NewmonthlyRate2 = (P * (numerator2 / denominator2));
+   return NewmonthlyRate2.toFixed(2);
+}
+console.log("calc2");
+console.log(mortgageCalculator2(200000, .05, 30));
 
 // 🏡 Task 5: Conditionals
 /* Add another paramter to your function called credit score. 
@@ -101,7 +103,7 @@ interest rate increases by 0.5% and if credit score is anywhere between 660 and 
 
 
 
-function mortgageCalculator3(name, monthlyRate, creditScore) {
+function mortgageCalculator3(creditScore) {
     let NmonthlyInterestRate;
     if ( creditScore > 740) {
          NmonthlyInterestRate = monthlyInterestRate - .005;
@@ -112,8 +114,23 @@ function mortgageCalculator3(name, monthlyRate, creditScore) {
     }
     return NmonthlyInterestRate;
 }
+function mortgageCalculator2(P, I, N, creditScore) {
+     if ( creditScore > 740) {
+          I = I - .005;
+     } else if (creditScore < 660) {
+          I = I + .005;
+     }
 
-//console.log(mortgageCalculator3("Kamryn", 2000, 700));
+
+     let monthlyInterestRate2 = I / 12;
+     let periods2 = N * 12;
+   let numerator2 = monthlyInterestRate2 * (Math.pow(( 1 + monthlyInterestRate2 ),periods2));
+   let denominator2 = Math.pow(( 1 + monthlyInterestRate2 ),periods2) - 1;
+
+   let NewmonthlyRate2 = (P * (numerator2 / denominator2));
+   return NewmonthlyRate2.toFixed(2);
+}
+console.log(mortgageCalculator2(200000, .04, 30, 550));
 
 // 🏡 Task 6: Loops
 /* Write a new function called variableInterestRate. This function 
@@ -136,18 +153,19 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 
 let creditScore;
 
-function variableInterestRate(name, monthlyRate, creditScore) {
-    let NmonthlyInterestRate;
-    if ( creditScore > 740) {
-         NmonthlyInterestRate = monthlyInterestRate - (monthlyInterestRate *.005);} 
-    else if (creditScore < 660) {
-         NmonthlyInterestRate = monthlyInterestRate + (monthlyInterestRate *.005);}
-    else {
-         NmonthlyInterestRate = monthlyInterestRate;}
-    return ( `${name}, with an interest rate of ${NmonthlyInterestRate}, your monthly rate is $${monthlyRate}`);
+function variableInterestRate(P, I, N) {
+         I = I - .025;
+     for (let i= 0; i < 10; i++) {
+          I += .005;
+          let monthlyInterestRate2 = I / 12;
+          let periods2 = N * 12;
+          let numerator2 = monthlyInterestRate2 * (Math.pow(( 1 + monthlyInterestRate2 ),periods));
+          let denominator2 = (Math.pow(( 1 + monthlyInterestRate2 ),periods)) - 1;
+          let monthlyRate2 = (P * (numerator2 / denominator2)).toFixed(2);
+          console.log(`${name}, with an interest rate of ${I.toFixed(3)}, your monthly rate is $${monthlyRate2}`)
+     }
 }
-
-//console.log(variableInterestRate("Kamryn", 2000, 600))
+console.log(variableInterestRate(200000, .04, 30));
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
 
 /* Attempt any of the stretch goals below once you have finished the work above. Remember as always, these may require additional research beyond what you learned today */
