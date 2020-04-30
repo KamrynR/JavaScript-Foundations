@@ -6,10 +6,10 @@ Assign them the values 200000, 0.05, and 30 respectively.
 Create another value called name and give it the value of your own name.
 */
 
-let principal = 200000;
+let principle = 200000;
 let interestRate = .05;
 let years = 30;
-//let name = "Kamryn Ridley";
+let name = "Kamryn Ridley";
 
 // 🏡 Task 1.5: Simple Math
 /* To create a monthly mortgage rate calculator, 
@@ -38,10 +38,10 @@ When your math is correct, monthlyRate will equal 1073.64
 
 /* M = P [ I ( 1 + I )^N ] / [ ( 1 + I )^N – 1 ] */
 
-let numerator = monthlyInterestRate * (Math.pow(( 1 + monthlyInterestRate ),periods));
-let denominator = (Math.pow(( 1 + monthlyInterestRate ),periods)) - 1;
+//let numerator = monthlyInterestRate * (Math.pow(( 1 + monthlyInterestRate ),periods));
+//let denominator = (Math.pow(( 1 + monthlyInterestRate ),periods)) - 1;
 
-let monthlyRate = (principal * (numerator / denominator)).toFixed(2);
+//let monthlyRate = (principle * (numerator / denominator)).toFixed(2);
 
 // 🏡 Task 3: Function
 /* Create a function called `mortgageCalculator` that combines all 
@@ -50,18 +50,27 @@ of the steps from task 1 and 2 and returns a sentence "{Name}, your monthly rate
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
 
-function mortgageCalculator() { 
-   // let principal = 200000;
-    //let interestRate = .05;
-    //let years = 30;
-    let name = "Kamryn Ridley";
-    let numerator = monthlyInterestRate * (Math.pow(( 1 + monthlyInterestRate ),periods));
-    let denominator = (Math.pow(( 1 + monthlyInterestRate ),periods)) - 1;
+function mortgageCalculator(principle, interest, years, creditScore) { 
+     let adjustedInterest = interestRate;
 
-    let monthlyRate = (principal * (numerator / denominator)).toFixed(2);
+     if(creditScore > 740){
+          adjustedInterest = adjustedInterest - .005;
+     }    else if (creditScore < 660) {
+          adjustedInterest = adjustedInterest + .005;
+     }    else {
+          adjustedInterest = adjustedInterest;
+     }
+     let monthlyInterestRate = interestRate / 12;
+     let periods = years * 12;
+     let numerator = monthlyInterestRate * (Math.pow(( 1 + monthlyInterestRate ),periods));
+     let denominator = (Math.pow(( 1 + monthlyInterestRate ),periods)) - 1;
 
-   return ( `${name}, your monthly rate is $${monthlyRate}`);
+     let monthlyRate = (principle * (numerator / denominator)).toFixed(2);
+
+   return ( `Kamryn, your monthly rate is $${monthlyRate}`);
 }
+
+console.log(mortgageCalculator(300000, 0.06, 30, 800));
 
 // 🏡 Task 4: Arguments and Parameters
 /* Substitute the variables in your functions for parameters such 
@@ -71,15 +80,15 @@ For example,
 mortgageCalculator(2000000, 0.05, 30); <-- should return 1,073.64
 */
 
-function mortgageCalculator2(P, I, N) {
-    let numerator = I * (Math.pow(( 1 + I ),N));
-    let denominator = Math.pow(( 1 + I ),N) - 1;
+//function mortgageCalculator2(P, I, N) {
+//    let numerator = I * (Math.pow(( 1 + I ),N));
+//    let denominator = Math.pow(( 1 + I ),N) - 1;
+//
+//    let NewmonthlyRate = (P * (numerator / denominator));
+//    return NewmonthlyRate;
+//}
 
-    let NewmonthlyRate = (P * (numerator / denominator));
-    return NewmonthlyRate;
-}
-
-console.log(mortgageCalculator2(200000, 0.05, 30 ));
+//console.log(mortgageCalculator2("Kamryn", monthlyRate ));
 
 // 🏡 Task 5: Conditionals
 /* Add another paramter to your function called credit score. 
@@ -104,7 +113,7 @@ function mortgageCalculator3(name, monthlyRate, creditScore) {
     return NmonthlyInterestRate;
 }
 
-console.log(mortgageCalculator3("Kamryn", 2000, 700));
+//console.log(mortgageCalculator3("Kamryn", 2000, 700));
 
 // 🏡 Task 6: Loops
 /* Write a new function called variableInterestRate. This function 
@@ -125,7 +134,7 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
 
-let creditScore = 700;
+let creditScore;
 
 function variableInterestRate(name, monthlyRate, creditScore) {
     let NmonthlyInterestRate;
@@ -138,7 +147,7 @@ function variableInterestRate(name, monthlyRate, creditScore) {
     return ( `${name}, with an interest rate of ${NmonthlyInterestRate}, your monthly rate is $${monthlyRate}`);
 }
 
-console.log(variableInterestRate("Kamryn", 2000, 600))
+//console.log(variableInterestRate("Kamryn", 2000, 600))
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
 
 /* Attempt any of the stretch goals below once you have finished the work above. Remember as always, these may require additional research beyond what you learned today */
